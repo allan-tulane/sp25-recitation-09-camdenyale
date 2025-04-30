@@ -88,7 +88,19 @@ def mst_from_points(points):
       tree connecting the cities in the input.
     """
     ###TODO
-    pass
+    graph = {name: set() for name, x, y in points}
+
+    # Add edges between each pair of points
+    for i in range(len(points)):
+        for j in range(i + 1, len(points)):
+            p1 = points[i]
+            p2 = points[j]
+            weight = euclidean_distance(p1, p2)
+            graph[p1[0]].add((p2[0], weight))
+            graph[p2[0]].add((p1[0], weight))
+
+    # Prims algorithm to find MSP
+    return prim(graph)[0]
 
 def euclidean_distance(p1, p2):
     return sqrt((p1[1] - p2[1])**2 + (p1[2] - p2[2])**2)
