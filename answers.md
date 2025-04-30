@@ -2,8 +2,8 @@
 
 ## Answers
 
-**Name:**_________________________
-**Name:**_________________________
+**Name:** Camden yale
+**Name:** Emily Aymond
 
 
 Place all written answers from `recitation-09.md` here for easier grading.
@@ -11,5 +11,15 @@ Place all written answers from `recitation-09.md` here for easier grading.
 
 
 - **2)**
+
+  The worst case work:
+
+  n = nodes
+  
+  m = edges
+  
+  k = connected components
+
+  O((n + m) log n)
 
 - **4)**
