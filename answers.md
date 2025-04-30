@@ -14,12 +14,14 @@ Place all written answers from `recitation-09.md` here for easier grading.
 
   The worst case work:
 
-  n = nodes
+  $n$ = nodes
   
-  m = edges
+  $m$ = edges
   
-  k = connected components
+  $k$ = connected components
 
-  O((n + m) log n)
+  $O((n + m) log n)$
 
 - **4)**
+
+  Total work: O($n^2 log n$)
