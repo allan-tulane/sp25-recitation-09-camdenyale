@@ -9,7 +9,7 @@ def prim(graph):
     Rather than returning a single tree, return a list of trees,
     one per component, containing the MST for each component.
 
-    Each tree is a set of (weight, node1, node2) tuples.    
+    Each tree is a set of (weight, node1, node2) tuples.
     """
     def prim_helper(visited, frontier, tree):
         if len(frontier) == 0:
@@ -24,20 +24,26 @@ def prim(graph):
                 tree.add((weight, node, parent))
                 visited.add(node)
                 for neighbor, w in graph[node]:
-                    heappush(frontier, (w, neighbor, node))    
+                    heappush(frontier, (w, neighbor, node))
                     # compare with dijkstra:
-                    # heappush(frontier, (distance + weight, neighbor))                
+                    # heappush(frontier, (distance + weight, neighbor))
 
                 return prim_helper(visited, frontier, tree)
         
-    # pick first node as source arbitrarily
-    source = list(graph.keys())[0]
-    frontier = []
-    heappush(frontier, (0, source, source))
-    visited = set()  # store the visited nodes (don't need distance anymore)
-    tree = set()
-    prim_helper(visited, frontier, tree)
-    return tree
+    visited = set()
+    forest = []
+    # Iterate over all nodes in the graph
+    for node in graph:
+        if node not in visited:
+            frontier = []
+            tree = set()
+            heappush(frontier, (0, node, node))
+            prim_helper(visited, frontier, tree)
+            # Remove the dummy starting edge (weight 0 from start to itself)
+            tree = {edge for edge in tree if edge[1] != edge[2]}
+            forest.append(tree)
+
+    return forest
 
 def test_prim():    
     graph = {
